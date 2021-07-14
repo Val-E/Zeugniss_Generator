@@ -1,0 +1,124 @@
+\documentclass[a4paper,10pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\title{Benutzungshinweise Zeugnis Generator}
+\author{Valentin Svet}
+
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Installation und Start}
+   \subsection{Python}
+      Die Anwendung wurde für Python3.9 und höhere Versionen geschrieben. Stellen Sie also sicher, dass Python auf dem gefordertem Stand ist.
+      Öffnen Sie eine Kommandozeile (Eingabeaufforderung) im Ordner mit der Anwendung und installieren Sie alle benötigten Pakete mit:
+      \begin{verbatim} python3.9 -m pip install -r requirements.txt --user \end{verbatim}
+      Danach können Sie die Anwendung mit 
+      \begin{verbatim} python3.9 main.py  \end{verbatim}
+      ausführen. 
+
+   \subsection{EXE}
+      Wenn die Anwendung als EXE vorliegt, können Sie die Anwendung entweder mit einem Doppelklick auf die main-Datei starten oder über die Kommandozeile, sodass Sie die Debuggermeldung lesen und ggf. speichern können.
+
+\section{Verwendung}
+   \subsection{Konzept}
+     Die zugrunde liegende Idee ist die, dass ein Datensatz, welcher einem Schüler zu geordnet ist, auf mehrere Dateien aufgeteilt werden kann. Auf diese Weise kann jeder Lehrer Manipulationen an allen Datensätzen vornehmen. Es ist deswegen sehr zu empfehlen, um mögliche Fehler besser nachvollziehen zu können und zu vermeiden sowie Rechenleistung zu sparen, sich im Vorfeld darauf zu einigen, welche Kompetenzen welchem Lehrer zu stehen. \newline
+     Wenn dann alle benötigten Informationen zusammengetragen sind, sucht sich die Anwendung für jeden Schüler alle Daten zusammen und erstellt auf ihrer Grundlage die Zeugnisse, damit dass ein Mensch nicht machen muss.
+     \subsection{Manipulationen Durchführen}
+      Vorab sei angemerkt, Sie finden im Ordner:
+      \begin{verbatim} docs/examples/  \end{verbatim}
+      Beispiel Dateien mit exemplarischen Tabellen. \newline
+      Außerdem ist die Anwendung mit allen verbreiteten Datei Formaten von Tabellenkalkulationsprogrammen kompatibel (.csv, .ods, .ots, .xls, .xlsx, .xlt, .xltx).      
+      \newline
+      \newline
+      In die Kopfzeile einer Tabelle tragen Sie das Attribut ein, welche Sie dem Datensatz hinzufügen wollen. Notwendige Attribute sind:
+      \begin{itemize}
+         \item „schüler\_id“: Dieses Attribut wird für die Zusammenführung der Daten benötigt.
+         \item „vorname“: enthält alle Vornamen eines Schülers in der richtigen Reihenfolge
+         \item „familienname“: Familienname wird auch als Ehename oder Nachname bezeichnet
+         \item „geburtsdatum“: Bitte in dieser Form angeben: dd.mm.yyyy
+         \item „geschlecht“: „m“ für männlich, „w“ für weiblich eintragen
+         \item „deutsch“: Gesamtnote für den Deutschunterricht
+         \item „deutsch\_allgemein“: Note für den allgemeinen Teil des Deutschunterrichts
+         \item „deutsch\_schriftlich“: Note für den schriftlichen Teil des Deutschunterrichts
+         \item „englisch“: Note für den Englischunterricht
+         \item „französisch“ …
+         \item „ethik“ …
+         \item „geografie“ …
+         \item „geschichte“ …
+         \item „politische\_bildung“ …
+         \item „mathematik“ …
+         \item „biologie“ …
+         \item „chemie“ …
+         \item „physik“ …
+         \item „kunst“ …
+	 \item „musik“ …
+         \item „sport“ …
+         \item „versäumte\_tage“: Anzahl an Tagen, welche der Schüler versäumt hat
+         \item „unentschuldigte\_tage“: Anzahl an Tagen, welche unentschuldigt sind
+         \item „versäumte\_stunden“ …
+         \item „unentschuldigte\_stunden“ …
+         \item „verspätungen“: Anzahl an Verspätungen
+         \item „klasse“: Form: ZahlZahlBuchstabe
+         \item „semester“: Wenn das Zeugnis für das erste Halbjahr ist tragen Sie „1“ ein, anderenfalls „2“
+         \item „angebote“: Außerschulische Angebote an denen der Schüler teilgenommen hat. „/“ eintragen, wenn der Schüler kein Angebot wahrgenommen hat.
+         \item „bemerkungen“: Zusätzliche Bemerkungen zum Schüler, \newline
+	 Sie können Sie hier Textbausteine verwenden, indem Sie an die Stelle, wo der entsprechende Textbaustein eingefügt werden soll, den zu diesem Textbaustein dazugehörigen Schlüssel einfügen. Eine Liste mit den Schlüsseln folgt:
+	 \begin{itemize}
+	    \item „<1a>“: „Die Versetzung ist zurzeit gefährdet.“
+            \item „<1b>“: „Die Versetzung ist zurzeit stark gefährdet.“
+            \item „<1c>“: „Die Versetzung ist zurzeit ausgeschlossen.“
+            \newline            
+	    \item „<2a>“: „Die Schülerin/Der Schüler hat die Probezeit bestanden.“
+            \item „<2b>“: „Die allgemeine Schulpflicht ist erfüllt.“
+            \newline
+	    \item „<3a>“: „Die Schülerin/Der Schüler hat die Berufsbildungsreife erworben."
+	    \item „<3b>“: „Dieses Zeugnis ist der Berufsbildungsreife / der erweiterten Berufsbildungsreife gleichwertig."
+            \newline
+	    \item „<4a>“: „Aufgrund von festgestellten Lese- und Rechtschreibschwierigkeiten wurden die Lese- und Rechtschreibleistungen nicht in vollem Umfang bewertet.“
+	    \newline
+            \item „<5a>“: „Die Schülerin/Der Schüler hat an Fördermaßnahmen zur Verbesserung der deutschen Sprachkenntnisse teilgenommen.“
+            \newline
+            \item „<6a>“: „Die Schülerin/Der Schüler hat am Religionsunterricht der Evangelischen Kirche teilgenommen. Der Träger kann eine eigene Teilnahmebescheinigung bzw. Beurteilung erteilen.“
+         \end{itemize}
+	 Die falsche Anrede wird automatisch herausgestrichen.
+      \end{itemize}
+      Zusätzlich gibt es optionale Attribute:
+      \begin{itemize}
+         \item „relegion“: Religionsnote
+         \item „wpu1\_name“: Name des WPU-Kurses der ersten Schiene
+         \item „wpu1\_note“: Note des WPU-Kurses der ersten Schiene
+	 \item „wpu2\_name“: Name des WPU-Kurses der zweiten Schiene
+         \item „wpu2\_note“: Note des WPU-Kurses der zweiten Schiene
+      \end{itemize}
+      Übersichtsalbei können Sie Zeilen und Spalten freilassen oder diese für Berechnung von Werten nutzen, bedenken Sie aber das alles, was sich in den Spalten mit den IDs befindet, als ID auch interpretiert wird.\newline
+      Achten Sie außerdem auf die richtige Schreibung der Schlüssel (siehe Liste), da sie sonst nicht erkannt werden. \newline
+      Sobald Sie alle Datensätze vollständig zusammengetragen haben, speichern Sie die Dateien im Ordner:
+      \begin{verbatim} tables/  \end{verbatim} 
+      oder in Unterordnern, welche sich im soeben genannten Ordner befinden müssen. Die weitere Ordnerstruktur sowie die Benennung der Dateien sind Ihnen überlassen.
+   \subsection{Zeugnisse drucken}
+      Nachdem die Anwendung alle Zeugnisse generiert hat, liegen sie im Ordner
+      \begin{verbatim} certificate/  \end{verbatim}
+      als Dokument vor. Sie sollten noch Mal stichprobenartig überprüft werden. Anschließend können sie gedruckt werden.
+   \subsection{Debugging}
+   Es ist zu erwarten, dass bei mehreren hundert Schülern Fehler auftreten, wie man diese am einfachsten findet und behebt wird in diesem Abschnitt erklärt.
+   Um die Debugmeldung zu lesen, starten Sie die Anwendung wie im Abschnitt Installation beschrieben über eine Kommandozeile. Wenn Fehler auftreten sollten, die von der Anwendung abgefangen werden können, wird eine Fehlermeldung ausgegeben werden.
+Liste von Fehlermeldungen mit ihrer Bedeutung:
+   \begin{itemize}
+      \item „Beim Schüler mit der ID: … fehlt: …“, bedeutet, dass ein Datensatz unvollständig ist. Die Attribute, sowie die ID des betroffenen Schülers werden ausgegeben.
+      \item „Beim Schüler mit der ID: … ist die Geschlechtsangabe falsch: …“, bedeutet, dass etwas außer „m“ oder „w“ ausgewählt worden ist, die falsche Eingabe steht am Ende der Zeile.
+      \item „Beim Schüler mit der ID: … ist die Semesterangabe falsch: …“, bedeutet, dass etwas außer „1“ oder „2“ ausgewählt worden ist, die falsche Eingabe steht am Ende der Zeile. 
+   \end{itemize}
+   Wahrend die Fehlerkorrektur sich bei den letzten zwei Punkte einfach durch die entsprechende Anpassung des Wertes durchführen lässt, kann es für das Fehlen eines Wertes viele Gründe geben. Die wahrscheinlichsten die mir einfallen werden wären, dass ein Schlüssel falsch geschrieben worden ist oder dass die ID falsch ist, weshalb der Wert nicht gefunden werden konnte, bzw. ein neuer Datensatz so angelegt worden ist. \newline
+   Ein Fehler, der bei sehr vielen Dateien praktisch nicht zu identifizieren ist, der bei dem ein richtiger Wert durch einen anderen überschrieben wird, denn um den Fehler zu finden musste man alle Dateien sich durchschauen. Deswegen lege ich Ihnen noch Mal sehr nahe sich im Vorfeld abzusprechen und darüber hinaus komplexe IDs für die Schüler zu definieren, sodass durch einen Tippfehler nicht eine ID entsteht, die einem anderen Schüler gehört und somit die Werte, die zu dieser ID gehören, überschieben werden.
+\end{document}
+
