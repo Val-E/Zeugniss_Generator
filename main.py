@@ -26,12 +26,12 @@ fill_options: dict = {
     # general
     "fill_subject": "……………………………………………*)",
     "first_semester": "Schulhalbjahr/S̶c̶h̶u̶l̶j̶a̶h̶r̶",
-    "second_semester": "1̶.̶ ̶S̶c̶h̶u̶l̶h̶a̶l̶b̶j̶a̶h̶r̶/Schuljahr",
+    "second_semester": "1̶.̶ ̶S̶c̶h̶u̶l̶h̶a̶l̶b̶j̶a̶h̶r/Schuljahr",
     "male_pronounce": "S̶i̶e̶/Er",
     "female_pronounce": "Sie/E̶r̶",
     "male_form_of_address": "D̶i̶e̶ ̶S̶c̶h̶ü̶l̶e̶r̶i̶n̶/Der Schüler ",
     "female_form_of_address": "Die Schülerin/D̶e̶r̶ ̶S̶c̶h̶ü̶l̶e̶r̶ ",
-    "cross_out_not": "n̶i̶c̶h̶t̶",
+    "cross_out_not": "n̶i̶c̶h̶t",
     "not": "nicht",
 
     # boxes
@@ -146,13 +146,11 @@ def generate_docx(docx_file_paths: list, student: dict) -> None:
 
     with open("./word/document.xml", "w") as document:
         document.write(content)
-        document.close()
 
     docx_path: str = f"../certificate/[{student['schüler_id']}] {student['vorname']} {student['familienname']}.docx"
     with ZipFile(docx_path, "w") as docx:
         for file in docx_file_paths:
             docx.write(file)
-        docx.close()
     print(f"Zeugnis fertig: {docx_path[15:-1]}")
 
 
@@ -220,5 +218,7 @@ if "__main__" == __name__:
     )
 
     main()
-    open("./word/document.xml", "w").write("")
+    with open("./word/document.xml", "w") as document:
+        document.write("")
     print("Zeugnisse sind fertig. Schönen Tag noch!")
+ 
