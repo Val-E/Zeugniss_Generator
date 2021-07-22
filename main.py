@@ -119,7 +119,7 @@ def get_all_file_paths(working_directory: str) -> np.array:
     return file_paths
 
 
-def generate_docx(docx_file_paths: list, student: dict) -> None:
+def generate_docx(docx_file_paths: np.array, student: dict) -> None:
     religion: str = student["religion"]
     if (religion != "nan") and (religion != ""):
         student["religion_label"] = "religion"
