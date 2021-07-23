@@ -97,13 +97,13 @@ def get_xls_table_data(xls_file_paths: np.array) -> np.array:
     for xls in xls_file_paths:
         data: dict = {}
         try:
-            # the application expects the user to use an .xls by default
+            # the application expects from user to use an .xls by default
             data = pd.read_excel(xls, dtype=str)
-        except:
+        except Exception:
             try:
                 # if the user instead decides to use a .csv
                 data = pd.read_csv(xls, dtype=str)
-            except:
+            except Exception:
                 # if the file should not be read
                 pass
         student_data = np.append(student_data, dict(data))
