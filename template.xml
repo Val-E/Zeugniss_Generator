@@ -1392,7 +1392,7 @@
                   <w:sz w:val="24"/>
                   <w:szCs w:val="24"/>
                 </w:rPr>
-                <w:t>{französisch}</w:t>
+                <w:t>{franzoesisch}</w:t>
               </w:r>
             </w:p>
           </w:tc>
@@ -3725,7 +3725,7 @@
                   <w:sz w:val="16"/>
                   <w:szCs w:val="16"/>
                 </w:rPr>
-                <w:t>{versäumte_tage}</w:t>
+                <w:t>{versaeumte_tage}</w:t>
               </w:r>
             </w:p>
           </w:tc>
@@ -3783,7 +3783,7 @@
                   <w:sz w:val="16"/>
                   <w:szCs w:val="16"/>
                 </w:rPr>
-                <w:t>{versäumte_stunden}</w:t>
+                <w:t>{versaeumte_stunden}</w:t>
               </w:r>
             </w:p>
           </w:tc>
@@ -3841,7 +3841,7 @@
                   <w:sz w:val="16"/>
                   <w:szCs w:val="16"/>
                 </w:rPr>
-                <w:t>{verspätungen}</w:t>
+                <w:t>{verspaetungen}</w:t>
               </w:r>
             </w:p>
           </w:tc>
