@@ -1,0 +1,2 @@
+schueler_id,vorname,familienname,geschlecht,geburtsdatum,,klasse,versaeumte_tage,unentschuldigte_tage,versaeumte_stunden,unentschuldigte_stunden,verspaetungen,,semester,angebote,bemerkungen
+12345ABCD,Max,Mustermann,m,01.01.2000,,07B,0,0,0,0,0,,1,/,/

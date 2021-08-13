@@ -1,0 +1,4 @@
+schüler_id,vorname,familienname,geschlecht,geburtsdatum,,klasse,versäumte_tage,unentschuldigte_tage,versäumte_stunden,unentschuldigte_stunden,verspätungen,,semester,angebote,bemerkungen
+0a,Sarah Maria Annalena,Sommer,w,07.09.2005,,07B,10,0,1,0,1,,1,Nawi-AG,<2a> War Klassensprecher
+1b,Bibi,Herbst,w,01.11.2004,,08C,15,1,4,2,3,,2,/,Schulsprecher
+2c,Max,Winter,m,01.11.2004,,09D,23,2,2,1,7,,1,Schachclub,/
