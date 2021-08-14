@@ -39,7 +39,7 @@ logger.setLevel(logging.DEBUG)
 os.chdir("./template")
 
 # load template for document.xml
-with open("../template.xml", "r") as template:
+with open(file="../template.xml", mode="r", encoding="utf8") as template:
     content: str = template.read()
 
 months: np.array = np.array([
@@ -126,11 +126,11 @@ def get_csv_table_data() -> np.array:
             data: dict = {}
             try:
                 # if the user instead decides to use a .csv
-                data = pd.read_csv(csv_path, dtype=str)
+                data = pd.read_csv(csv_path, dtype=str, encoding="utf8")
             except ValueError:
                 try:
                     # the application expects from user to use an .xls by default
-                    data = pd.read_excel(csv_path, dtype=str)
+                    data = pd.read_excel(csv_path, dtype=str, encoding="utf8")
                 except ValueError:
                     # if the file should not be read
                     pass
@@ -205,7 +205,7 @@ def generate_docx(docx_file_paths: np.array, student: dict) -> None:
     student["bemerkungen"] = remarks
 
     # write document.xml with student data
-    with open("./word/document.xml", "w") as document:
+    with open(file="./word/document.xml", mode="w", encoding="utf8") as document:
         document.write(content.format(
             vorname=student["vorname"],                     familienname=student["familienname"],
             geburtsdatum=student["geburtsdatum"],           klasse=student["klasse"],
@@ -213,7 +213,7 @@ def generate_docx(docx_file_paths: np.array, student: dict) -> None:
             deutsch=student["deutsch"],                     mathematik=student["mathematik"],
             deutsch_allgemein=student["deutsch_allgemein"], deutsch_schriftlich=student["deutsch_schriftlich"],
             englisch=student["englisch"],                   biologie=student["biologie"],
-            franzoesisch=student["franzoesisch"],             chemie=student["chemie"],
+            franzoesisch=student["franzoesisch"],           chemie=student["chemie"],
             physik=student["physik"],                       ethik=student["ethik"],
             kunst=student["kunst"],                         geografie=student["geografie"],
             musik=student["musik"],                         geschichte=student["geschichte"],
@@ -315,7 +315,7 @@ def main() -> None:
                     logging.error(msg=f"Schüler ID: {student['schueler_id']}; Fehlender Attribut: {key}")
 
     # remove student data from document.xml
-    with open("./word/document.xml", "w") as document:
+    with open(file="./word/document.xml", mode="w") as document:
         document.write("")
 
     logging.info(msg="Zeugnisse sind fertig")
