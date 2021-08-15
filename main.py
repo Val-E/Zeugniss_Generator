@@ -300,7 +300,7 @@ def main() -> None:
                                     logging.info(msg=f"Schüler ID: {student['schueler_id']}; "
                                                      f"Attribut: {key}; "
                                                      f"Wert: {value}; "
-                                                     f"Pfad: {data['path']}")
+                                                     f"Pfad: {data['path'][1:]}")
                             except KeyError:
                                 pass
             except KeyError:
