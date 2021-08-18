@@ -27,26 +27,19 @@ import numpy as np
 import pandas as pd
 
 from zipfile import ZipFile
-from datetime import datetime
 
-
-# create and configure logger
-logging.basicConfig(filename="log_file.log", format="%(levelname)s; %(asctime)s; %(message)s;", filemode="w")
-logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
 
 # set template as working directory
 os.chdir("./template")
 
+# create and configure logger
+logging.basicConfig(filename="../log_file.log", format="%(levelname)s: %(asctime)s; %(message)s;", filemode="w")
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
+
 # load template for document.xml
 with open(file="../template.xml", mode="r", encoding="utf8") as template:
     content: str = template.read()
-
-months: np.array = np.array([
-    "Januar", "Februar", "März", "April",
-    "Mai", "Juni", "Juli", "August",
-    "September", "Oktober", "November", "Dezember"
-])
 
 # attributes for certificate
 key_list: np.array = np.array([
@@ -157,7 +150,7 @@ def generate_docx(docx_file_paths: np.array, student: dict) -> None:
         student["pronomen"] = fill_options["male_pronounce"]
         student["form_of_address"] = fill_options["male_form_of_address"]
     else:
-        logging.error(msg=f"Schüler ID: {student['schueler_id']}; Falsch Geschlechtsangabe: {student['geschlecht']};")
+        logging.error(msg=f"Schüler ID: {student['schueler_id']}; Falsch Geschlechtsangabe: {student['geschlecht']}")
         return None
 
     klasse: str = student["klasse"]
@@ -193,7 +186,7 @@ def generate_docx(docx_file_paths: np.array, student: dict) -> None:
         else:
             student["bestanden"] = fill_options["cross_out_not"]
     else:
-        logging.error(msg=f"Schüler ID: {student['schueler_id']}; Falsche Semesterangabe: {student['semester']};")
+        logging.error(msg=f"Schüler ID: {student['schueler_id']}; Falsche Semesterangabe: {student['semester']}")
         return None
 
     # insert text for keywords
@@ -258,7 +251,7 @@ def main() -> None:
     for data in student_data:
         try:
             for student_id in data["schueler_id"]:
-                if (str(student_id) != "nan") and (not (student_id in student_id_list)):
+                if student_id and (not np.isin(student_id, student_id_list)):
                     student_id_list = np.append(student_id_list, student_id)
         except KeyError:
             pass
@@ -266,8 +259,8 @@ def main() -> None:
     logging.info(msg="Datensätze werden gelesen und Zeugnisse geschrieben.")
 
     # get date for certificate
-    year: int = datetime.now().year
-    datum: str = f"{datetime.now().day} {months[int(datetime.now().month) - 1]} {year}"
+    datum: str = str(input("Bitte geben Sie das Datum für die Zeugnisse an: "))
+    year: int = int(datum[-4:])
 
     # generate dictionary with all attributes from all files for all students
     for student_id in student_id_list:
