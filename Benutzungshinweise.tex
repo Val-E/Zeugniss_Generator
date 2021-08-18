@@ -93,7 +93,7 @@
          \item „versaeumte\_stunden“ …
          \item „unentschuldigte\_stunden“ …
          \item „verspaetungen“: Anzahl an Verspätungen
-         \item „klasse“: Form: ZahlZahlBuchstabe
+         \item „klasse“: Beispielklasse: 07A
          \item „semester“: Wenn das Zeugnis für das erste Halbjahr ist tragen Sie „1“ ein, anderenfalls „2“
          \item „angebote“: Außerschulische Angebote an denen der Schüler teilgenommen hat. „/“ eintragen, wenn der Schüler kein Angebot wahrgenommen hat.
          \item „bemerkungen“: Zusätzliche Bemerkungen zum Schüler, \newline
@@ -129,25 +129,27 @@
       Achten Sie außerdem auf die richtige Schreibung der Schlüssel (siehe Liste), da sie sonst nicht erkannt werden. \newline
       Sobald Sie alle Datensätze vollständig zusammengetragen haben, speichern Sie die Dateien im Ordner:
       \begin{verbatim} tables/  \end{verbatim} 
-      oder in Unterordnern, welche sich im soeben genannten Ordner befinden müssen. Die weitere Ordnerstruktur sowie die Benennung der Dateien sind Ihnen überlassen.
-   \subsection{Zeugnisse drucken}
-      Nachdem die Anwendung alle Zeugnisse generiert hat, liegen sie im Ordner
+      oder in Unterordnern, welche sich im soeben genannten Ordner befinden müssen. Die weitere Ordnerstruktur sowie die Benennung der Dateien sind Ihnen überlassen. \newline
+      Nachdem Sie die Anwendung gestartet haben, werden Sie nach dem Datum gefragt, welches für alle Zeugnisse verwendet werden soll. Beispieldatum: 09 Dezember 2021 
+      \subsection{Zeugnisse drucken}
+      Wenn die Zeugnisse generiert worden sind, liegen sie im Ordner
       \begin{verbatim} certificate/  \end{verbatim}
-      als Dokument vor. Sie sollten noch Mal stichprobenartig überprüft werden. Anschließend können sie gedruckt werden.
+      als Dokument vor. Sie sollten aber noch Mal stichprobenartig überprüft werden. Anschließend können sie gedruckt werden.
    \subsection{Debugging}
    Es ist zu erwarten, dass bei mehreren hundert Schülern Fehler auftreten, wie man diese am einfachsten findet und behebt wird in diesem Abschnitt erklärt.
    Um die Debugmeldung zu lesen, starten Sie die Anwendung wie im Abschnitt Installation beschrieben, warten ab bis das Programm fertig ist – sich also schließt – und öffnen darauf die Logdatei:
    \begin{verbatim} log_file.log \end{verbatim}
    In dieser Datei wird aufgezeichnet, wann welcher Verarbeitungsprozess anfängt sowie welche Attribute aus welcher Dateie verwendet wurden. Form:
-      \begin{verbatim} „Schüler ID: … ; Attribut: … ; Wert: … ; Pfad: … ;“ \end{verbatim}
+   \begin{verbatim} „Schüler ID: … ; Attribut: … ; Wert: … ; Pfad: … ;“ \end{verbatim}
    Wenn Fehler auftreten sollten, die von der Anwendung abgefangen werden können, wird eine Fehlermeldung gelogt und mit der ID sowie allen betroffenen Attributen. 
    Liste von Fehlermeldungen mit ihrer Bedeutung:
    \begin{itemize}
       \item „Schüler ID: … ; Fehlt: …“, bedeutet, dass ein Datensatz unvollständig ist. Die Attribute, sowie die ID des betroffenen Schülers werden ausgegeben.
-      \item „Schüler ID: … ; Falsche Geschlechtsangabe: …“, bedeutet, dass etwas außer „m“ oder „w“ ausgewählt worden ist, die falsche Eingabe steht am Ende der Zeile.
+      \item „Schüler ID: … ; Falsche Geschlechtsangabe: … ;“, bedeutet, dass etwas außer „m“ oder „w“ ausgewählt worden ist, die falsche Eingabe steht am Ende der Zeile.
       \item „Schüler ID: … ; Falsche Semesterangabe: … ;“, bedeutet, dass etwas außer „1“ oder „2“ ausgewählt worden ist, die falsche Eingabe steht am Ende der Zeile. 
    \end{itemize} 
-   Wahrend die Fehlerkorrektur sich bei den letzten zwei Punkte einfach durch die entsprechende Anpassung des Wertes durchführen lässt, kann es für das Fehlen eines Wertes viele Gründe geben. Die wahrscheinlichsten die mir einfallen werden wären, dass ein Schlüssel falsch geschrieben worden ist oder dass die ID falsch ist, weshalb der Wert nicht gefunden werden konnte, bzw. ein neuer Datensatz so angelegt worden ist. \newline
+   Wahrend die Fehlerkorrektur sich bei den letzten zwei Punkte einfach durch die entsprechende Anpassung des Wertes durchführen lässt, kann es für das Fehlen eines Wertes viele Gründe geben. Die wahrscheinlichsten die mir einfallen werden wären, dass ein Schlüssel falsch geschrieben worden ist oder dass die ID falsch ist, weshalb der Wert nicht gefunden werden konnte, bzw. ein neuer Datensatz so angelegt worden ist.
+   \newline
    Ein Fehler, der bei sehr vielen Dateien praktisch nicht zu identifizieren ist, der bei dem ein richtiger Wert durch einen anderen überschrieben wird, denn um den Fehler zu finden musste man alle Dateien sich durchschauen. Deswegen lege ich Ihnen noch Mal sehr nahe sich im Vorfeld abzusprechen und darüber hinaus komplexe IDs für die Schüler zu definieren, sodass durch einen Tippfehler nicht eine ID entsteht, die einem anderen Schüler gehört und somit die Werte, die zu dieser ID gehören, überschieben werden.
 \end{document}
 
