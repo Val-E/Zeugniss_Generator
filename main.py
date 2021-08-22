@@ -27,10 +27,14 @@ import numpy as np
 import pandas as pd
 
 from zipfile import ZipFile
+from warnings import simplefilter
 
 
 # set template as working directory
 os.chdir("./template")
+
+# do not print FutureWarnings from numpy
+simplefilter(action='ignore', category=FutureWarning)
 
 # create and configure logger
 logging.basicConfig(filename="../log_file.log", format="%(levelname)s: %(asctime)s; %(message)s;", filemode="w")
