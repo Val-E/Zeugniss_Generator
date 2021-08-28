@@ -23,6 +23,8 @@
 
 import os
 import logging
+import zipfile
+
 import numpy as np
 import pandas as pd
 
@@ -41,9 +43,13 @@ logging.basicConfig(filename="../log_file.log", format="%(levelname)s: %(asctime
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-# load template for document.xml
-with open(file="../template.xml", mode="r", encoding="utf8") as template:
-    content: str = template.read()
+# unzip document
+with zipfile.ZipFile("../template.docx") as docx:
+    docx.extractall("./")
+
+    #load template for document.xml
+    with open(file="./word/document.xml", mode="r", encoding="utf8") as template:
+        content: str = template.read()
 
 # attributes for certificate
 key_list: np.array = np.array([
@@ -58,12 +64,12 @@ key_list: np.array = np.array([
 fill_options: dict = {
     # general
     "fill_subject": "……………………………………………*)",
-    "first_semester": "Schulhalbjahr/S̶c̶h̶u̶l̶j̶a̶h̶r̶",
-    "second_semester": "1̶.̶ ̶S̶c̶h̶u̶l̶h̶a̶l̶b̶j̶a̶h̶r̶/Schuljahr",
-    "male_pronounce": "S̶i̶e̶/Er",
-    "female_pronounce": "Sie/E̶r̶",
-    "male_form_of_address": "D̶i̶e̶ ̶S̶c̶h̶ü̶l̶e̶r̶i̶n̶/Der Schüler ",
-    "female_form_of_address": "Die Schülerin/D̶e̶r̶ ̶S̶c̶h̶ü̶l̶e̶r̶ ",
+    "first_semester": "Schulhalbjahr /S̶c̶h̶u̶l̶j̶a̶h̶r̶",
+    "second_semester": "1̶.̶ ̶S̶c̶h̶u̶l̶h̶a̶l̶b̶j̶a̶h̶r̶ /Schuljahr",
+    "male_pronounce": "S̶i̶e̶ /Er",
+    "female_pronounce": "Sie /E̶r̶",
+    "male_form_of_address": "D̶i̶e̶ ̶S̶c̶h̶ü̶l̶e̶r̶i̶n̶ /Der Schüler",
+    "female_form_of_address": "Die Schülerin /D̶e̶r̶ ̶S̶c̶h̶ü̶l̶e̶r̶",
     "cross_out_not": "n̶i̶c̶h̶t̶",
     "not": "nicht",
 
@@ -204,27 +210,27 @@ def generate_docx(docx_file_paths: np.array, student: dict) -> None:
     # write document.xml with student data
     with open(file="./word/document.xml", mode="w", encoding="utf8") as document:
         document.write(content.format(
-            vorname=student["vorname"],                     familienname=student["familienname"],
-            geburtsdatum=student["geburtsdatum"],           klasse=student["klasse"],
-            semester=student["semester"],                   jahr=student["jahr"],
-            deutsch=student["deutsch"],                     mathematik=student["mathematik"],
-            deutsch_allgemein=student["deutsch_allgemein"], deutsch_schriftlich=student["deutsch_schriftlich"],
-            englisch=student["englisch"],                   biologie=student["biologie"],
-            franzoesisch=student["franzoesisch"],           chemie=student["chemie"],
-            physik=student["physik"],                       ethik=student["ethik"],
-            kunst=student["kunst"],                         geografie=student["geografie"],
-            musik=student["musik"],                         geschichte=student["geschichte"],
-            sport=student["sport"],                         politische_bildung=student["politische_bildung"],
-            wpu1_name=student["wpu1_name"],                 wpu1_note=student["wpu1_note"],
-            religion_label=student["religion_label"],       religion=student["religion"],
-            wpu2_name=student["wpu2_name"],                 wpu2_note=student["wpu2_note"],
-            angebote=student["angebote"],                   kreuz1=student["kreuz1"],
-            kreuz2=student["kreuz2"],                       kreuz3=student["kreuz3"],
-            kreuz4=student["kreuz4"],                       bemerkungen=student["bemerkungen"],
+            vorname=student["vorname"],                       familienname=student["familienname"],
+            geburtsdatum=student["geburtsdatum"],             klasse=student["klasse"],
+            semester=student["semester"],                     jahr=student["jahr"],
+            deutsch=student["deutsch"],                       mathematik=student["mathematik"],
+            deutsch_allgemein=student["deutsch_allgemein"],   deutsch_schriftlich=student["deutsch_schriftlich"],
+            englisch=student["englisch"],                     biologie=student["biologie"],
+            franzoesisch=student["franzoesisch"],             chemie=student["chemie"],
+            physik=student["physik"],                         ethik=student["ethik"],
+            kunst=student["kunst"],                           geografie=student["geografie"],
+            musik=student["musik"],                           geschichte=student["geschichte"],
+            sport=student["sport"],                           politische_bildung=student["politische_bildung"],
+            wpu1_name=student["wpu1_name"],                   wpu1_note=student["wpu1_note"],
+            religion_label=student["religion_label"],         religion=student["religion"],
+            wpu2_name=student["wpu2_name"],                   wpu2_note=student["wpu2_note"],
+            angebote=student["angebote"],                     kreuz1=student["kreuz1"],
+            kreuz2=student["kreuz2"],                         kreuz3=student["kreuz3"],
+            kreuz4=student["kreuz4"],                         bemerkungen=student["bemerkungen"],
             versaeumte_tage=student["versaeumte_tage"],       unentschuldigte_tage=student["unentschuldigte_tage"],
             versaeumte_stunden=student["versaeumte_stunden"], unentschuldigte_stunden=student["unentschuldigte_stunden"],
             verspaetungen=student["verspaetungen"],           pronomen=student["pronomen"],
-            bestanden=student["bestanden"],                 neue_jahrgangsstuffe=student["neue_jahrgangsstuffe"],
+            bestanden=student["bestanden"],                   neue_jahrgangsstuffe=student["neue_jahrgangsstuffe"],
             datum=student["datum"]
         ))
 
@@ -297,7 +303,8 @@ def main() -> None:
                                     logging.info(msg=f"Schüler ID: {student['schueler_id']}; "
                                                      f"Attribut: {key}; "
                                                      f"Wert: {value}; "
-                                                     f"Pfad: {data['path'][3:]}")
+                                                     f"Pfad: {data['path'][3:]}"
+                                                 )
                             except KeyError:
                                 pass
             except KeyError:
