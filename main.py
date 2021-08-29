@@ -23,7 +23,6 @@
 
 import os
 import logging
-import zipfile
 
 import numpy as np
 import pandas as pd
@@ -44,12 +43,12 @@ logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 # unzip document
-with zipfile.ZipFile("../template.docx") as docx:
-    docx.extractall("./")
+with ZipFile("../template.docx") as docx_template:
+    docx_template.extractall("./")
 
-    #load template for document.xml
-    with open(file="./word/document.xml", mode="r", encoding="utf8") as template:
-        content: str = template.read()
+    # load template for document.xml
+    with open(file="./word/document.xml", mode="r", encoding="utf8") as document_template:
+        content: str = document_template.read()
 
 # attributes for certificate
 key_list: np.array = np.array([
@@ -235,7 +234,11 @@ def generate_docx(docx_file_paths: np.array, student: dict) -> None:
         ))
 
     # build docx
-    docx_path: str = f"../certificate/[{student['schueler_id']}] {student['vorname']} {student['familienname']}.docx"
+    docx_path: str = f"../certificate/" \
+                     f"[{student['schueler_id']}] " \
+                     f"[{student['klasse']}] " \
+                     f"{student['vorname']} " \
+                     f"{student['familienname']}.docx"
     with ZipFile(docx_path, "w") as docx:
         for file in docx_file_paths:
             docx.write(file)
